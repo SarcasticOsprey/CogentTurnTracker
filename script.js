@@ -1,5 +1,3 @@
-
-
 var veiw = new Vue
 ({
   el: '#input',
@@ -44,6 +42,7 @@ var veiw = new Vue
       }
       else
       {
+        
         tempchar = this.sort_up(tempchar,mode)
         //console.log("up")
       }
@@ -79,7 +78,7 @@ var veiw = new Vue
             }
             if(tempchar[i].reflex == tempchar[i+1].reflex && mode == "swap")
             {
-              //console.log("mswaode")
+              console.log("swap")
               temp1 = tempchar[i]
               temp2 = tempchar[i+1]
               //console.log(temp1.entity.reflex)
@@ -112,7 +111,7 @@ var veiw = new Vue
         {   
           if(tempchar[i].reflex > tempchar[i+1].reflex)
           {
-            //console.log("Swap")
+            console.log("Swap")
             swap = true
             temp1 = tempchar[i]
             //console.log(temp1.entity.reflex)
@@ -162,17 +161,15 @@ var veiw = new Vue
         pos = pos-1
         if(pos < 0)
         {
+          this.char = this.char.reverse()
           pos = this.char.length-1
-          if(real == false)
+          if(this.phase_declare == true)
           {
-            if(this.phase_declare == true)
-            {
-              this.set_phase("action")
-            }
-            else
-            {
-              this.set_phase("declare")
-            }
+            this.set_phase("action")
+          }
+          else
+          {
+            this.set_phase("declare")
           }
         }
 
@@ -182,9 +179,8 @@ var veiw = new Vue
         pos = pos+1
         if(pos > this.char.length-1)
         {
+          this.char = this.char.reverse()
           pos = 0
-          if(real == false)
-          {
             if(this.phase_declare == true)
             {
               this.set_phase("action")
@@ -193,14 +189,10 @@ var veiw = new Vue
             {
               this.set_phase("declare")
             }
-          }
         }
      }
-      if(real == true)
-      {
       this.set_turn(pos)
       this.position = pos
-      }
       this.$forceUpdate();
 
 
@@ -249,8 +241,14 @@ var veiw = new Vue
         }
         console.log(ent)
         return ent
+    },
+    rev: function()
+    {
+    this.char = tempchar
+    tempchar = tempchar.reverse()
+    this.char = tempchar  
     }
-
   }
 })
+
 
