@@ -10,9 +10,9 @@
 
 <body>
     <center>
-
     <div class="main" id="input">
     <br>
+
     <input v-model="name" placeholder="Name"><input v-model="reflex" placeholder="Reflex">
     <button v-on:click="add_char()" class="btn btn-light">Add Player</button>
     <button v-on:click="add_npc()" class="btn btn-light">Add NPC</button>
@@ -26,7 +26,7 @@
     </template>
     <template v-if="phase_declare">
         <h1>Declare Phase</h1>
-        <h2>Go through each player and ask them what they want to do and write it down in their action box</h2>
+        <h2>Go through each player and ask them what they want to do</h2>
     </template>
     <template v-if="phase_action">
         <h1>Action Phase</h1>
@@ -35,9 +35,10 @@
     </div>
     <br>
     <button v-on:click="sortobjects('swap'), start_turn()" class="btn btn-light">Start</button>
-    <button v-on:click="next_turn('-',false),sortobjects('nope'),next_turn('-',true)" class="btn btn-light">Back</button>
-    <button v-on:click="next_turn('+',false),sortobjects('nope',false),next_turn('+',true)" class="btn btn-light">Next</button>
-
+   <!--  <button v-on:click="next_turn('-',false),sortobjects('nope'),next_turn('-',true)" class="btn btn-light">Back</button>
+    <button v-on:click="next_turn('+',false),sortobjects('nope'),next_turn('+',true)" class="btn btn-light">Next</button> -->
+    <button v-on:click="next_turn('-',true)" class="btn btn-light">Back</button>
+    <button v-on:click="next_turn('+',true)" class="btn btn-light">Next</button>
 
     <div class="view">
         <div class="entry">
